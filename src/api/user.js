@@ -1,25 +1,22 @@
-import config from '../config'
-import storageKeys from '../common/variable/storagekey'
 import fetchJson from './fetchdata'
 
 function userLogin(username, password, callback, failedCallback) {
     fetchJson("POST", "/api/v1/token", (response) => {
-        if (response.code != 200){
-            return failedCallback(response.errMsg);
-        }
-        callback(response);
+        return callback(response);
     }, (errMsg)=>{
-        failedCallback(errMsg);
+        return failedCallback(errMsg);
     }, {
         username: username,
         password: password
     })
 }
 
-function userRegister(username, password, callback, failedCallback){
-    fetchJson("POST", "/register", callback, failedCallback, {
-
-    })
+function userRegister(username, password, email, callback, failedCallback){
+    fetchJson("POST", "/api/v1/user", callback, failedCallback, {
+        username: username,
+        password: password,
+        email: email,
+    });
 }
 
 export {userLogin, userRegister};

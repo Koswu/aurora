@@ -1,7 +1,7 @@
 import { Form, Modal, Button, Alert, Spinner} from "react-bootstrap";
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom'
-import {userRegister} from '../../api/user'
+import {userRegister} from '../../api/user.js'
 
 class RegisterModal extends React.Component{
 

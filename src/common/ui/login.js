@@ -1,8 +1,8 @@
 import { Form, Modal, Button, Alert} from "react-bootstrap";
 import Spinner from 'react-bootstrap/Spinner'
 import React, { useState } from 'react';
-import {userLogin, userRegister} from "../../api/user"
-import storageKeys from "../variable/storagekey";
+import {userLogin, userRegister} from "../../api/user.js"
+import storageKeys from "../variable/storagekey.js";
 
 class LoginModal extends React.Component{
 

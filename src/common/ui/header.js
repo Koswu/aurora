@@ -1,11 +1,10 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import LoginModal from './login';
-import config from '../../config';
-import storageKeys from '../variable/storagekey'
-import { render } from '@testing-library/react';
-import RegisterModal from './register';
+import LoginModal from './login.js';
+import config from '../../config.js';
+import storageKeys from '../variable/storagekey.js'
+import RegisterModal from './register.js';
 
 class HeaderNav extends React.Component {
     constructor(props) {

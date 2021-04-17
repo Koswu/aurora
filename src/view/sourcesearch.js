@@ -2,8 +2,8 @@ import { map } from 'jquery';
 import {Link } from 'react-router-dom'
 import React from 'react';
 import {Container, Accordion, Form, Button, Alert, Card} from 'react-bootstrap';
-import {searchInfoNode, editInfoNode, deleteInfoNode} from  '../api/infonode.js'
-class NodeSearch extends React.Component{
+import {searchSourceNode, deleteSourceNode} from  '../api/infonode.js'
+class SourceNodeSearch extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +21,7 @@ class NodeSearch extends React.Component{
                 <Form>
                     <Form.Control value={this.state.keyword} 
                     onChange={(e) => this.setState({keyword:e.target.value})}  
-                    type="search" placeholder="搜索节点..."></Form.Control>
+                    type="search" placeholder="搜索外部来源节点..."></Form.Control>
                     <Button variant="primary" onClick={this.handleSearch}>搜索</Button>
                 </Form>
                 <Accordion>
@@ -30,14 +30,14 @@ class NodeSearch extends React.Component{
                             <Card>
                                 <Card.Header>
                                     <Accordion.Toggle as={Button} variant="link" eventKey={index+1}>
-                                        {element.content}
+                                        {element.description}
                                     </Accordion.Toggle>
                                 </Card.Header>
                                 <Accordion.Collapse eventKey={index+1}>
                                 <Card.Body>
                                     ID: {element.id} <br/>
                                     <div className="text-right">
-                                        <Link to={"/infonode/"+element.id}><Button veriant="info">详情</Button></Link>
+                                        <Link to={"/sourcenode/"+element.id}><Button veriant="info">详情</Button></Link>
                                         <Button variant="danger" onClick={()=>this.handleDelete(element.id)}>删除</Button>
                                     </div>
                                 </Card.Body>
@@ -51,7 +51,7 @@ class NodeSearch extends React.Component{
         );
     }
     handleDelete(id){
-        deleteInfoNode(id, ()=>{
+        deleteSourceNode(id, ()=>{
             let nextres = this.state.searchResult.filter(element => element.id != id)
             this.setState({
                 searchResult: nextres,
@@ -61,7 +61,7 @@ class NodeSearch extends React.Component{
         })
     }
     handleSearch() {
-        searchInfoNode(this.state.keyword, (res) =>{
+        searchSourceNode(this.state.keyword, '', (res) =>{
             this.setState({
                 searchResult:res
             });
@@ -77,4 +77,4 @@ class NodeSearch extends React.Component{
     }
 }
 
-export default NodeSearch;
+export default SourceNodeSearch;

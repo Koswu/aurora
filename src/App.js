@@ -3,11 +3,20 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner'
 import React, {useState} from 'react';
 import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom';
+import ReactCanvasNest from 'react-canvas-nest';
 import HeaderNav from './common/ui/header';
 import { Container, Modal } from 'react-bootstrap';
-import {testServer} from './api/testconn'
-import storageKeys from './common/variable/storagekey'
-import NodeSearch from './view/nodesearch'
+import {testServer} from './api/testconn.js'
+import storageKeys from './common/variable/storagekey.js'
+import NodeSearch from './view/nodesearch.js'
+import InfoNodeEdit from './view/nodeedit.js'
+import InfoNodeAdd from './view/nodeadd.js'
+import SourceNodeAdd from './view/sourceadd.js'
+import GraphView from './view/showgraph.js'
+import ShowNodeView from './view/shownode.js'
+import Footer from './common/ui/footer.js'
+import SourceNodeSearch from './view/sourcesearch';
+import ShowSourceNodeView from './view/showsource';
 
 class Index extends React.Component {
   constructor(props) {
@@ -15,14 +24,17 @@ class Index extends React.Component {
   }
   render() {
     return (
-      <div>
-        <div id="modalContainer"></div>
-        <p>这个是主页</p>
-        <Link to={'/sec'}><Button>你好啊</Button></Link>
+      <div className="center-area">
+        <Link to={'/infonode/add'} ><Button>增加信息节点</Button></Link>
+        <Link to={'/infonode/search'}><Button>信息节点检索</Button></Link>
+        <Link to={'/sourcenode/add'}><Button>添加外部来源</Button></Link>
+        <Link to={'/sourcenode/search'}><Button>外部来源节点检索</Button></Link>
+        <Link to={'/graph'}><Button>查看节点关系</Button></Link>
         <Button onClick={() => testServer((data) => {
           console.log(data);
           alert("OK");
         })}>测试服务器连接</Button>
+        <p>这个是主页</p>
       </div>
     );
   }
@@ -39,38 +51,6 @@ class Secondary extends React.Component {
   }
 }
 
-class ModalTest extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showModal: false,
-    }
-  }
-  open() {
-    this.setState({showModal: true});
-  }
-  close() {
-    this.setState({showModal: false});
-  }
-  render() {
-    return (
-      <div>
-        <Button onClick={() => this.open()}>Show Modal</Button>
-        <Modal show={this.state.showModal} onHide={this.close}>
-          <Modal.Header>
-            <Modal.Title>测试</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div>Content</div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => this.close()}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    )
-  }
-}
 
 class App extends React.Component{
   constructor(props) {
@@ -88,8 +68,14 @@ class App extends React.Component{
         <Switch>
           <Route exact path="/" component={Index}></Route>
           <Route exact path="/sec" component={Secondary}></Route>
-          <Route exact path="/nodesearch" component={NodeSearch}></Route>
-          <Route exact path="/modal" component={ModalTest}></Route>
+          <Route exact path="/infonode/add" component={InfoNodeAdd}></Route>
+          <Route exact path="/infonode/search" component={NodeSearch}></Route>
+          <Route exact path="/sourcenode/add" component={SourceNodeAdd}></Route>
+          <Route exact path="/sourcenode/search" component={SourceNodeSearch}></Route>
+          <Route path="/infonode/:id" component={ShowNodeView}></Route>
+          <Route path="/infonode/edit/:id" component={InfoNodeEdit}></Route>
+          <Route path="/sourcenode/:id" component={ShowSourceNodeView}></Route>
+          <Route exact path="/graph" component={GraphView}></Route>
           <Redirect to='/404' ></Redirect>
         </Switch>
       </BrowserRouter>

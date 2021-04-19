@@ -3986,9 +3986,9 @@ bootstrap-select@^1.13.18:
   resolved "https://registry.npm.taobao.org/bootstrap-select/download/bootstrap-select-1.13.18.tgz#4557119d58dc1159189977161c803962220e4dda"
   integrity sha1-RVcRnVjcEVkYmXcWHIA5YiIOTdo=
 
-"bootstrap-star-rating@git://github.com/kartik-v/bootstrap-star-rating.git#v3.5.5":
+"bootstrap-star-rating@git://github.com/kartik-v/bootstrap-star-rating#v3.5.5":
   version "3.5.5"
-  resolved "git://github.com/kartik-v/bootstrap-star-rating.git#0f729ea50a69224b643e2d9c955b9183e387f03a"
+  resolved "git://github.com/kartik-v/bootstrap-star-rating#0f729ea50a69224b643e2d9c955b9183e387f03a"
   dependencies:
     bootstrap "~3"
     jquery ">= 1.9.0"

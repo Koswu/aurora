@@ -16,7 +16,6 @@ import GraphView from './view/showgraph.js'
 import ShowNodeView from './view/shownode.js'
 import SourceNodeSearch from './view/sourcesearch';
 import ShowSourceNodeView from './view/showsource';
-import {InfoIcon} from '@primer/octicons-react';
 import SearchInfoIcon from './icons/laptop_search.svg'
 import AddInfoIcon from './icons/add_doc.svg'
 import AddSourceIcon from './icons/add_site.svg'
@@ -29,6 +28,7 @@ class Index extends React.Component {
   }
   render() {
     return (
+      <Container>
       <div className="center-area">
       <CardDeck>
         <Link to={'/infonode/add'} >
@@ -78,6 +78,7 @@ class Index extends React.Component {
           alert("OK");
         })}>测试服务器连接</Button>
       </div>
+      </Container>
     );
   }
 }

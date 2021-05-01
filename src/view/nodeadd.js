@@ -16,7 +16,7 @@ class InfoNodeAdd extends React.Component {
         };
         this.showErrorMsg = this.showErrorMsg.bind(this)
         this.showSuccessMsg = this.showSuccessMsg.bind(this)
-        this.onFormSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
     showErrorMsg(msg) {
         this.setState({
@@ -44,7 +44,8 @@ class InfoNodeAdd extends React.Component {
         e.preventDefault()
         const formData = new FormData(e.target)
         this.setState({isLoading: true})
-        addInfoNode(formData.get("content"), formData.getAll("inference_nodes").map(parseInt), formData.getAll("external_nodes").map(parseInt), 
+        addInfoNode(formData.get("content"), formData.getAll("inference_nodes").map(numStr => parseInt(numStr)),
+         formData.getAll("external_nodes").map(numStr => parseInt(numStr)), 
         (data) => {
             this.showSuccessMsg("创建成功")
             window.location.reload();
@@ -71,6 +72,7 @@ class InfoNodeAdd extends React.Component {
                             <Form.Label>论据节点</Form.Label>
                             <Form.Control name="inference_nodes" as="select" multiple>
                             {
+                                (this.state.inferenceOption === null)?null:
                                 this.state.inferenceOption.map((element, index) =>  {
                                     console.log(element);
                                     return <option value={element.id} >{element.content}</option>

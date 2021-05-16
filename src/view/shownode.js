@@ -52,12 +52,20 @@ class ShowNodeView extends React.Component{
                     isDowned: false,
                 })
             }
-            if (data < 0){
+            else if (data < 0){
                 this.setState({
                     isUped: false,
                     isDowned: true,
                 })
             }
+            else {
+                this.setState({
+                    isUped: false,
+                    isDowned: false,
+                })
+            }
+        }, (err)=>{
+            console.log(err)
         })
     }
     handleUp(){

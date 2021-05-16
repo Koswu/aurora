@@ -1,5 +1,5 @@
 import { post } from "jquery";
-import fetchJson from "./fetchdata";
+import fetchJson from "./fetchdata.js";
 
 function searchInfoNode(keyword, callback, failedCallback){
     fetchJson("GET", `/api/v1/info-node?keyword=${encodeURIComponent(keyword)}`, callback, failedCallback)

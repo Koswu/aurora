@@ -59,7 +59,9 @@ function editInfoNode(id, content, inferenceIds, externalSourceIds, callback, fa
 }
 
 function getMyRate(id, callback, failedCallback){
-    fetchJson("GET", `/api/v1/info-node/${id}/my-rate`, callback, failedCallback)
+    fetchJson("GET", `/api/v1/info-node/${id}/my-rate`, callback, (err)=>{
+
+    })
 }
 
 function putMyRate(id, rate, callback, failedCallback){

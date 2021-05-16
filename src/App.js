@@ -22,56 +22,56 @@ import AddSourceIcon from './icons/add_site.svg'
 import SearchSourceIcon from './icons/site_search.svg'
 import RelationIcon from './icons/relation.svg'
 
+
+
+function EntryCard(props){
+  return (
+    <div>
+    {props.disabled?
+          <div className="disabled-function" title="需要登录后才可用">
+          <Card className="main-card text-center">
+            <Card.Img variant="top" src={props.icon}>
+            </Card.Img>
+            <Card.Body>
+              <Card.Title>{props.title}</Card.Title>
+            </Card.Body>
+          </Card>
+          </div>
+    :
+        <Link to={props.to} disabled>
+          <Card className="main-card text-center">
+            <Card.Img variant="top" src={props.icon}>
+            </Card.Img>
+            <Card.Body>
+              <Card.Title>{props.title}</Card.Title>
+            </Card.Body>
+          </Card>
+        </Link>
+    }
+    </div>
+  );
+}
+
 class Index extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
+    const logined = localStorage.getItem(storageKeys.LOGINED_USERNAME) == null
     return (
       <Container>
       <div className="center-area">
       <CardDeck>
-        <Link to={'/infonode/add'} >
-          <Card className="main-card text-center">
-            <Card.Img variant="top" src={AddInfoIcon}>
-            </Card.Img>
-            <Card.Body>
-              <Card.Title>增加信息节点</Card.Title>
-            </Card.Body>
-          </Card>
-        </Link>
-        <Link to={'/infonode/search'}>        
-          <Card className="main-card text-center">
-            <Card.Img variant="top" src={SearchInfoIcon}></Card.Img>
-            <Card.Body>
-              <Card.Title>信息节点检索</Card.Title>
-            </Card.Body>
-          </Card>
-        </Link>
-        <Link to={'/sourcenode/add'}>        
-          <Card className="main-card text-center">
-            <Card.Img variant="top" src={AddSourceIcon}></Card.Img>
-            <Card.Body>
-              <Card.Title>添加外部来源</Card.Title>
-            </Card.Body>
-          </Card>
-        </Link>
-        <Link to={'/sourcenode/search'}>
-          <Card className="main-card text-center">
-            <Card.Img variant="top" src={SearchSourceIcon}></Card.Img>
-            <Card.Body>
-              <Card.Title>外部来源检索</Card.Title>
-            </Card.Body>
-          </Card>
-        </Link>
-        <Link to={'/graph'}>
-          <Card className="main-card text-center">
-            <Card.Img variant="top" src={RelationIcon}></Card.Img>
-            <Card.Body>
-              <Card.Title>查看节点关系</Card.Title>
-            </Card.Body>
-          </Card>
-        </Link>
+        <EntryCard title="增加信息节点" to="/infonode/add" icon={AddInfoIcon} disabled={logined}>
+        </EntryCard>
+        <EntryCard title="信息节点检索" to="/infonode/search" icon={SearchInfoIcon}>
+        </EntryCard>
+        <EntryCard title="添加外部来源" to="/sourcenode/add" icon={AddSourceIcon} disabled={logined}>
+        </EntryCard>
+        <EntryCard title="外部来源检索" to="/sourcenode/search" icon={SearchSourceIcon}>
+        </EntryCard>
+        <EntryCard title="查看节点关系" to="/graph" icon={RelationIcon}>
+        </EntryCard>
       </CardDeck>
         <Button onClick={() => testServer((data) => {
           console.log(data);

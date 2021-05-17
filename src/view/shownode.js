@@ -122,7 +122,7 @@ class ShowNodeView extends React.Component{
                             <td>节点可信度</td>
                             <td>
                             <span className={this.getCredibilityClass()}>
-                            {this.state.credibility}
+                            {this.state.credibility.toFixed(2)}
                             </span>
                             (评价人数：{this.state.ratedCnt})
                             </td>

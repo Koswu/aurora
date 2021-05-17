@@ -84,6 +84,7 @@ class InfoNodeAdd extends React.Component {
                             <Form.Label>外部论据节点</Form.Label>
                             <Form.Control name="external_nodes" as="select" multiple>
                             {
+                                this.state.externalSourceOption === null?null:
                                 this.state.externalSourceOption.map((element) => {
                                     return <option value={element.id}>{element.description} {element.url}</option>
                                 })

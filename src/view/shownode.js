@@ -40,7 +40,7 @@ class ShowNodeView extends React.Component{
             this.setState({
                 content: data.content,
                 credibility: data.credibility,
-                ratedCnt: data.rated_cnt,
+                ratedCnt: data.positive_rated_cnt + data.negative_rated_cnt,
             })
             console.log(data)
         }, (err)=>{
@@ -72,7 +72,7 @@ class ShowNodeView extends React.Component{
         putMyRate(this.state.id, 1, (data)=>{
             this.setState({
                 credibility: data.credibility,
-                ratedCnt: data.rated_cnt,
+                ratedCnt: data.positive_rated_cnt + data.negative_rated_cnt,
                 isUped: true, 
                 isDowned: false,
             })
@@ -82,7 +82,7 @@ class ShowNodeView extends React.Component{
         putMyRate(this.state.id, -1, (data)=>{
             this.setState({
                 credibility: data.credibility,
-                ratedCnt: data.rated_cnt,
+                ratedCnt: data.positive_rated_cnt + data.negative_rated_cnt,
                 isUped: false, 
                 isDowned: true,
             })

@@ -65,20 +65,28 @@ class GraphView extends React.Component {
             return {
                 id: "node-" + value.id,
                 style: {
-                    keyshape: {
-                        fill: 'red',
-                        stroke: 'red',
-                    },
                     label: {
                         value: value.description,
-                    }
+                    },
                 }
             }
         })
         const infos_node = response.infos.map((value) => {
+            let color = ''
+            if (value.credibility >= 0.5){
+                color = 'green'
+            } else if (value.credibility <= -0.5){
+                color = 'red'
+            } else {
+                color = 'orange'
+            }
             return {
                 id: "node-" + value.id,
                 style: {
+                    keyshape: {
+                        fill: color,
+                        stroke: 'black',
+                    },
                     label: {
                         value: value.content,
                     }
